@@ -1,0 +1,13 @@
+1. Introduction to Authentication and Authorization ->
+
+2. Setting Up Mongoose with MongoDB -> 
+
+3. JWT Basics (header, payload, and signature) ->
+
+4. User Registration and Login Flow ->
+
+5. Protecting Routes with JWT (Authorization) ->
+
+6. Role-Based Authorization (Optional)
+
+Repo : https://github.com/M7mmedATeF/Amit-BE-Session.git
