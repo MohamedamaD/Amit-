@@ -1,3 +1,4 @@
+const Post = require("../model/posts.model");
 const User = require("../model/user.model");
 
 const getAllUsers = async (req, res) => {
@@ -51,10 +52,22 @@ const createUser = async (req, res) => {
   }
 };
 
+const findUserPosts = async (req, res) => {
+  try {
+    const user_id = req.user.id;
+    // const posts = await Post.find({ user_id });
+    const user = await User.findById(user_id).populate("posts");
+    res.json({ data: user });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllUsers,
   updateUser,
   deleteUser,
   createUser,
   getUserById,
+  findUserPosts,
 };
