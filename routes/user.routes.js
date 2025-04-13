@@ -4,13 +4,16 @@ const {
   updateUser,
   deleteUser,
   getAllUsers,
+  findUserPosts,
 } = require("../controllers/user.controller");
 const { authMiddleware } = require("../middlewares/auth.middleware");
 
 const router = require("express").Router();
 
 router.get("/", getAllUsers);
-router.get("/:id", getUserById);
+router.get("/posts", authMiddleware, findUserPosts); // /users/posts
+
+router.get("/:id", getUserById); // /users/:id
 router.post("", createUser);
 router.put("/:id", updateUser);
 router.delete(
@@ -26,5 +29,7 @@ router.delete(
   },
   deleteUser
 );
+
+
 
 module.exports = router;
