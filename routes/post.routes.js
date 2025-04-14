@@ -14,5 +14,5 @@ router.get("/:id", findOneById);
 router.post("", authMiddleware, uploads.single("file"), createPost);
 router.put("/:id", updatePost);
 router.delete("/:id", deletePost);
-
+// router.get("/:id/comments", getPostsWithComment); TODO : Task
 module.exports = router;

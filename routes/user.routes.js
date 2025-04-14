@@ -7,6 +7,8 @@ const {
   findUserPosts,
 } = require("../controllers/user.controller");
 const { authMiddleware } = require("../middlewares/auth.middleware");
+const RoleMiddleWare = require("../middlewares/role.middleware");
+const Role = require("../utils/role");
 
 const router = require("express").Router();
 
@@ -19,14 +21,7 @@ router.put("/:id", updateUser);
 router.delete(
   "/:id",
   authMiddleware, // req.user
-  (req, res) => {
-    if (req.user.role !== "admin") {
-      return res.status(403).json({
-        message: "You are not authorized to delete this user",
-      });
-    }
-    next();
-  },
+  RoleMiddleWare(Role.ADMIN),
   deleteUser
 );
 

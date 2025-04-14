@@ -1,0 +1,28 @@
+
+// SQL 
+
+Create CRUD operations for a new model
+
+ Design the model schema
+
+ Implement Create operation
+
+ Implement Read operation
+
+ Implement Update operation
+
+ Implement Delete operation
+
+ Write tests for all operations
+
+Create 2 models with relationships
+
+ Define the first model
+
+ Define the second model
+
+ Establish relationships (e.g. One-to-Many, Many-to-Many, etc.)
+
+ Implement migration for both models
+
+ Add sample seed data to test relationships

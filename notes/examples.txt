@@ -1,0 +1,9 @@
+Country 	- 	Capital
+
+User 		-	Profile
+
+
+## PARENTS -> GET SET CREATE ADD REMOVE HAS
+
+## CHILD -> GET SET CREATE
+

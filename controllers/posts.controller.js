@@ -9,7 +9,11 @@ const createPost = async (req, res) => {
       return res.status(400).json({ message: error.details[0].message });
     }
     const user_id = req.user.id;
-    const post = new Post({ ...req.body, owner: user_id });
+    const post = new Post({
+      ...req.body,
+      img: req.file.filename,
+      owner: user_id,
+    });
     await post.save();
 
     await User.findByIdAndUpdate(user_id, {
@@ -46,7 +50,7 @@ const updatePost = async (req, res) => {
 
 const findAll = async (req, res) => {
   try {
-    const posts = await Post.find().populate("owner", "name email");
+    const posts = await Post.find().populate("owner", "username email");
     res.json({ data: posts, message: "Posts fetched successfully" });
   } catch (error) {
     res.states(500).json({ message: error.message });
@@ -54,7 +58,9 @@ const findAll = async (req, res) => {
 };
 const findOneById = async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id)
+      .populate({ path: "comments", populate: "author" })
+      .populate("owner");
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
