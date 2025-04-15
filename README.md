@@ -35,7 +35,13 @@ Repo : https://github.com/M7mmedATeF/Amit-BE-Session.git
 
 3. Dive into Populate Method  ✅
 
-4. SQL ORM using PostgreSQL ## integration with Express ✅
+4. SQL ORM using PostgreSQL ## integration with Express
+
+# Session 4
+
+1. Mastering Sequelize ORM ✅
+
+2. Practice on All Topics "have fun 😂" ✅
 
 ### remains topics
 

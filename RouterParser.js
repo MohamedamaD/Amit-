@@ -63,3 +63,13 @@ console.log(
 // queries = page=1&limit=10&sort=asc
 
 // return `${path}?${query}`
+
+
+
+
+
+
+
+
+
+

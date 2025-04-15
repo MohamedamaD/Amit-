@@ -1,7 +1,8 @@
-Country 	- 	Capital
+User 		-	    Profile     1 to 1      ✅
 
-User 		-	Profile
+User 	- 	        Car         1 to N      ✅
 
+Car        -       Color       N to M       
 
 ## PARENTS -> GET SET CREATE ADD REMOVE HAS
 
