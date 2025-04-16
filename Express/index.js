@@ -18,6 +18,7 @@ const cookieParser = require("cookie-parser");
 dotenv.config();
 const Profile = require("./model/profile.model.sql");
 const Cars = require("./model/cars.model.sql");
+const { errorHandler } = require("./middlewares/error-handler.middleware");
 
 const app = express();
 
@@ -44,6 +45,8 @@ app.get("/test", async (req, res) => {
     .cookie("user", { name: "mohamed" }, { httpOnly: true, secure: true })
     .send("Hello World!");
 });
+
+app.use(errorHandler);
 
 app.listen(3000, async (e) => {
   console.log("Server is running on port 3000");

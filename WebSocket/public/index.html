@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Socket Chat</title>
+</head>
+
+<body>
+    <h2>Chat App</h2>
+
+    <div>
+        <input id="username" placeholder="Your name" />
+        <button onclick="register()">Register</button>
+    </div>
+
+    <div>
+        <input id="to" placeholder="To (username)" />
+        <input id="pm" placeholder="Private message" />
+        <button onclick="sendPrivate()">Send PM</button>
+    </div>
+
+    <div>
+        <input id="newGroup" placeholder="New group name" />
+        <button onclick="createGroup()">Create Group</button>
+    </div>
+
+    <div>
+        <input id="group" placeholder="Group name" />
+        <button onclick="joinGroup()">Join Group</button>
+        <input id="gm" placeholder="Group message" />
+        <button onclick="sendGroup()">Send to Group</button>
+    </div>
+
+    <div id="messages"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+
+</html>

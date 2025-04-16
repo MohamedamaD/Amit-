@@ -7,9 +7,12 @@ const {
   deletePost,
 } = require("../controllers/posts.controller.js");
 const { authMiddleware } = require("../middlewares/auth.middleware.js");
+const {
+  tryCatchWrapper,
+} = require("../middlewares/error-handler.middleware.js");
 const uploads = require("../middlewares/uploads.middleware.js");
 
-router.get("/", findAll);
+router.get("/", tryCatchWrapper(findAll));
 router.get("/:id", findOneById);
 router.post("", authMiddleware, uploads.single("file"), createPost);
 router.put("/:id", updatePost);

@@ -1,7 +1,6 @@
 // 🔐 Auth & Authorization Tasks
 
-const Post = require("../model/posts.model");
-const { findByIdAndUpdate } = require("../model/posts.model");
+const { where } = require("sequelize");
 
 // ✅ Task: Return the currently logged-in user's info
 async function getCurrentUser(req, res) {
@@ -133,3 +132,95 @@ async function deletePost(req, res) {
     res.status(500).send("internal server error:" + error.message);
   }
 }
+
+// ✅ Middleware: Check if user is authenticated (i.e., logged in)
+async function isAuthenticated(req, res, next) {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(404).json({ message: " user not found" });
+  }
+  if (user.password !== password) {
+    return res.status(404).json({ message: " invalid credential" });
+  }
+  req.user = user;
+  next();
+}
+
+//  "123456" == 123456
+
+// ✅ Task: Log out the current user (clear cookie or session)
+function logoutUser(req, res) {
+  res.cookie.remove("token").send("user logged out");
+}
+
+// ✅ Middleware: Allow access only to users with "editor" role
+function protectEditor(req, res, next) {
+  const { role } = req.user;
+
+  if (!roles.include(role)) {
+    throw new Error("You are not authorized to perform this action");
+  }
+
+  next();
+}
+
+// ✅ Task: Get a single post with all its comments and comment authors
+async function getPostWithComments(req, res) {
+  const { post_id } = req.params;
+  const post = await Post.findByPk(post_id, {
+    include: [{ model: "comments", include: "author" }],
+  });
+
+  res.json(post);
+}
+
+// ✅ Task: Remove a specific comment from a post
+async function removeComment(req, res) {
+  // const post_id = req.params.id
+  // const post = await Post.findByPK(post_id);
+  // await post.removeComment(req.body.comment_id)
+  await Comments.destroy({ where: { id: req.body.comment_id } });
+}
+
+// ✅ Task: Like a post (prevent duplicate likes)
+async function likePost(req, res) {
+  // const postLike = Like.findOrCreate({...req.body});
+  const post = await Post.findByPK(req.params.post_id);
+  if (!(await post.hasLikes([req.body.like_id]))) {
+    await post.createLike({ ...req.body });
+  }
+}
+
+// ✅ Task: Upload multiple images to user gallery
+async function uploadGallery(req, res) {
+  const files = req.files;
+  const userId = req.params.id;
+  const user = await User.findByIdAndUpdate(
+    userId,
+    {
+      gallery: { $push: files },
+    },
+    { $new: true }
+  );
+}
+
+// ✅ Task: Update user profile details (name, email, bio, etc.)
+async function updateProfile(req, res) {
+  const user_id = req.params.id;
+  const data = req.body;
+  // const user_update = await User.update({ where: { user_id } }, data);
+  const user_update = await User.update({ user_id }, data);
+}
+
+// ✅ Task: Assign a new role (e.g., admin/editor) to a user
+async function assignRole(req, res) {}
+
+// ✅ Task: Find users who posted more than 3 times
+async function getTopAuthors(req, res) {}
+
+// ✅ Task: Delete a user and all their posts (cascade delete)
+async function deleteUserAndPosts(req, res) {}
+
+// ✅ Task: Get all posts created within a specific date range
+async function getPostsByDateRange(req, res) {}
