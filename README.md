@@ -51,9 +51,14 @@ Repo : https://github.com/M7mmedATeF/Amit-BE-Session.git
 
 3. What is TypeScript? and Why Exists?  ✅
 
-4. Learn TypeScript ✅
+4. Learn TypeScript 
 
-5. NestJS Concepts ['Module', 'Controller', 'Service (Provider)', 'Dependency Injection', 'Routing & HTTP Methods', 'Middleware', 'Guards', 'Pipes', 'Interceptors', 'Exception Filters'] ✅
+5. NestJS Concepts ['Module', 'Controller', 'Service (Provider)', 'Dependency Injection', 'Routing & HTTP Methods', 'Middleware', 'Guards', 'Pipes', 'Interceptors', 'Exception Filters']
+
+
+# Session 6 [Mastering NestJS Concepts & Code & send email] 
+
+# Session 7 NestJS Concepts With DB
 
 
 ### remains topics
